@@ -18,6 +18,8 @@ if (php_sapi_name() !== 'cli') {
     exit;
 }
 
+require_once dirname(__DIR__) . '/bootstrap_env.php';
+
 // ---------- Runtime config (hardcoded for Hostinger cron) ----------
 $ALLOW_CLI_OVERRIDES      = false;
 $RUNTIME_PROJECT_ID       = 12;
@@ -33,11 +35,11 @@ $RUNTIME_API_TRACE_MAX    = 500;
 
 // ---------- APIs ----------
 $CAPISOFT_BASE  = 'https://api-3.capisoftware.com.mx/eu/capi-b/public/api/v2/ventas/oportunidades';
-$CAPISOFT_TOKEN = getenv('CAPISOFT_TOKEN') ?: 'CAPISOFT_TOKEN';
+$CAPISOFT_TOKEN = env_required('CAPISOFT_TOKEN');
 
 $GHL_BASE_URL = 'https://services.leadconnectorhq.com';
 $GHL_API_VER  = '2021-07-28';
-$GHL_TOKEN    = getenv('GHL_TOKEN') ?: 'GHL_TOKEN';
+$GHL_TOKEN    = env_required('GHL_TOKEN');
 
 // ---------- Project config ----------
 $GHL_LOCATION_ID = '2cOAVW7auz2agTWyCnxF';

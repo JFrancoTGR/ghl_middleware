@@ -16,6 +16,8 @@ if (php_sapi_name() !== 'cli') {
     exit;
 }
 
+require_once dirname(__DIR__) . '/bootstrap_env.php';
+
 // ====== CONFIG (hardcoded for Hostinger cron) ======
 $ALLOW_CLI_OVERRIDES       = false;
 $defaultProyectoId         = 2;
@@ -32,11 +34,11 @@ $defaultResolutionMaxChars = 800;
 $defaultLogMode            = 'normal'; // normal | debug
 
 $CAPISOFT_BASE  = "https://api-3.capisoftware.com.mx/eu/capi-b/public/api/v2/ventas/oportunidades";
-$CAPISOFT_TOKEN = getenv('CAPISOFT_TOKEN') ?: 'CAPISOFT_TOKEN';
+$CAPISOFT_TOKEN = env_required('CAPISOFT_TOKEN');
 
 $GHL_BASE_URL = "https://services.leadconnectorhq.com";
 $GHL_API_VER  = "2021-07-28";
-$GHL_TOKEN    = getenv('GHL_TOKEN') ?: 'GHL_TOKEN';
+$GHL_TOKEN    = env_required('GHL_TOKEN');
 
 $GHL_LOCATION_ID = "2cOAVW7auz2agTWyCnxF";
 $GHL_PIPELINE_ID = "MTUZz0ZEQial6a52574i"; // LIVERPOOL - Flujo de venta

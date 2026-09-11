@@ -11,12 +11,12 @@
 // - UPDATES ONLY: opportunity STATUS (never pipelineStageId / owner / cf)
 // =======================================================
 
-require_once dirname(__DIR__) . '/bootstrap_env.php';
-
 if (php_sapi_name() !== 'cli') {
     http_response_code(403);
     exit;
 }
+
+require_once dirname(__DIR__) . '/bootstrap_env.php';
 
 // ====== CONFIG (hardcoded for Hostinger cron) ======
 $ALLOW_CLI_OVERRIDES       = false;
