@@ -10,10 +10,13 @@ declare (strict_types = 1);
  * - Fuera de horario: envía plantilla OOO por proyecto con PDF adjunto, sin botones/to_chain_id.
  */
 
-date_default_timezone_set('America/Mexico_City');
 header('Content-Type: application/json; charset=utf-8');
 
-const SP_API_KEY                    = 'SP_API_KEY';
+date_default_timezone_set('America/Mexico_City');
+
+require_once dirname(__DIR__) . '/bootstrap_env.php';
+
+$SP_API_KEY = env_required('SP_API_KEY');
 const SP_BOT_ID                     = '699c711bc687e92ca105ad00';
 const SP_CONTACTS_ENDPOINT          = 'https://api.sendpulse.com/whatsapp/contacts';
 const SP_GET_BY_PHONE_ENDPOINT      = 'https://api.sendpulse.com/whatsapp/contacts/getByPhone';
@@ -239,8 +242,9 @@ function http_request(
 
 function sp_request(string $method, string $url, ?array $payload = null): array
 {
+    global $SP_API_KEY;
     return http_request($method, $url, $payload, [
-        'Authorization: Bearer ' . SP_API_KEY,
+        'Authorization: Bearer ' . $SP_API_KEY,
     ]);
 }
 

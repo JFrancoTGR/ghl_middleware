@@ -14,8 +14,10 @@ if (php_sapi_name() !== 'cli') {
     exit;
 }
 
+require_once dirname(__DIR__) . '/bootstrap_env.php';
+
 // ====== CONFIG ======
-const SP_API_KEY               = 'SP_API_KEY';
+$SP_API_KEY     = env_required('SP_API_KEY');
 const SP_BOT_ID                = '699c711bc687e92ca105ad00';
 const SP_TEMPLATE_LANG         = 'es';
 const SP_TEMPLATE_REACTIVAR_60 = 'flujo_lead_reactivar_60min';
@@ -91,8 +93,11 @@ function http_json(string $method, string $url, array $headers, ?array $payload 
 
 function sp_headers(): array
 {
+
+global $SP_API_KEY;
+
     return [
-        'Authorization: Bearer ' . SP_API_KEY,
+        'Authorization: Bearer ' . $SP_API_KEY,
         'Accept: application/json',
         'Content-Type: application/json',
     ];

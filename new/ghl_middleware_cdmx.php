@@ -5,10 +5,12 @@ header('Content-Type: application/json; charset=utf-8');
 
 date_default_timezone_set('UTC');
 
+require_once dirname(__DIR__) . '/bootstrap_env.php';
+
 // ========= CONFIG =========
 const LOG_FILE          = __DIR__ . '/ghl_middleware.log';
 const CAPISOFT_ENDPOINT = 'https://api-3.capisoftware.com.mx/eu/capi-b/public/api/services/social_media/catch';
-const CAPISOFT_TOKEN    = 'CAPISOFT_TOKEN';
+$CAPISOFT_TOKEN = env_required('CAPISOFT_TOKEN');
 
 // ===== Project map: GHL capisoft_id_project => legible =====
 const PROJECT_MAP = [
@@ -134,29 +136,6 @@ function capisoft_post(array $payload, string $token): array
     return [$httpCode, $respBody, $curlErr];
 }
 
-function get_token(): string
-{
-    // 1) env var (ideal)
-    $t = getenv('CAPISOFT_TOKEN');
-    if (is_string($t) && trim($t) !== '') {
-        return trim($t);
-    }
-
-                                                  // 2) fallback opcional: config.php fuera de public_html (recomendado)
-                                                  // Crea /home/USER/config/capisoft.php con: <?php return ['CAPISOFT_TOKEN' => '...'];
-                                                  // y ajusta ruta si aplica.
-    $fallback = __DIR__ . '/capisoft_config.php'; // si quieres ponerlo junto (NO ideal), úsalo aquí
-    if (file_exists($fallback)) {
-        $cfg = include $fallback;
-        if (is_array($cfg) && ! empty($cfg['CAPISOFT_TOKEN'])) {
-            return (string) $cfg['CAPISOFT_TOKEN'];
-        }
-
-    }
-
-    // 3) si no hay, vacío (y fallará por 401 si CAPISoft lo requiere)
-    return '';
-}
 
 function safe_str($v): ?string
 {
@@ -287,7 +266,8 @@ $capisoftPayload = [
 ];
 
 // 6) Enviar a CAPISoft
-[$httpCode, $respBody, $curlErr] = capisoft_post($capisoftPayload, CAPISOFT_TOKEN);
+[$httpCode, $respBody, $curlErr] =
+    capisoft_post($capisoftPayload, $CAPISOFT_TOKEN);
 
 // 7) Log de respuesta CAPISoft
 log_line([
