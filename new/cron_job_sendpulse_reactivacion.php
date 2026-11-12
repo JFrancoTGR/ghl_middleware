@@ -14,7 +14,7 @@ if (php_sapi_name() !== 'cli') {
     exit;
 }
 
-require_once dirname(__DIR__) . '/bootstrap_env.php';
+require_once __DIR__ . '/bootstrap_env.php';
 
 // ====== CONFIG ======
 $SP_API_KEY     = env_required('SP_API_KEY');

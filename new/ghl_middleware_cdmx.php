@@ -5,7 +5,7 @@ header('Content-Type: application/json; charset=utf-8');
 
 date_default_timezone_set('UTC');
 
-require_once dirname(__DIR__) . '/bootstrap_env.php';
+require_once __DIR__ . '/bootstrap_env.php';
 
 // ========= CONFIG =========
 const LOG_FILE          = __DIR__ . '/ghl_middleware.log';

@@ -14,7 +14,7 @@ header('Content-Type: application/json; charset=utf-8');
 
 date_default_timezone_set('America/Mexico_City');
 
-require_once dirname(__DIR__) . '/bootstrap_env.php';
+require_once __DIR__ . '/bootstrap_env.php';
 
 $SP_API_KEY = env_required('SP_API_KEY');
 const SP_BOT_ID                     = '699c711bc687e92ca105ad00';
