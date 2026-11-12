@@ -59,6 +59,7 @@ $RESPONSABLE_ID_TO_GHL_USER_ID = [
     141 => 'rmnpri2YtCeVlkjwMKk8', // Denisse Jalife
     142 => 'VFd98tdUzrwHPFw71bZW', // Sofia Santos
     233 => 'XJFKjmrZwSILCLAxIA3U', // Diana Gonzalez
+    263 => 'sfjhuDtLVQBJHH7bS5FZ', // María Herrera 
     // 173 => 'TODO', // Maria Preciado
 ];
 

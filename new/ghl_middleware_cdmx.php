@@ -30,6 +30,7 @@ $OWNER_EMAIL_TO_RESPONSABLE_ID = [
     'djalife@estrategiaurbana.com.mx'   => 141,
     'ssantos@estrategiaurbana.com.mx'   => 142,
     'dgonzalez@estrategiaurbana.com.mx' => 233,
+    'gherrera@estrategiaurbana.com.mx' => 263,
 ];
 
 // ========= HELPERS =========
